@@ -1,12 +1,13 @@
 version: '3'
 services:
-  golang:
-    image: golang:1.19.11-alpine 
-    ports:
-      - 8080:80
-    volumes:
-      - type: bind
-        source: "."
-        target: "/go/src/app"
-    tty: true
-    restart: always
+  app:
+    build:
+      context: .
+      dockerfile: ./build/Dockerfile
+    volumes: # マウントディレクトリ
+      - ./:/go/src/app
+    tty: true # コンテナの永続化
+    env_file: # .envファイル
+      - ./build/.go_env
+    environment:
+      - TZ=Asia/Tokyo
