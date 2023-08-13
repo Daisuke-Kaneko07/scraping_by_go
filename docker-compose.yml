@@ -11,3 +11,10 @@ services:
       - ./build/.go_env
     environment:
       - TZ=Asia/Tokyo
+    links:
+      - smtp
+  smtp:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
