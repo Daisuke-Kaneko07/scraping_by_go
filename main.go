@@ -15,8 +15,8 @@ func main() {
     // 1時間ごとの定期実行
 	c.AddFunc("@hourly", scraping)
 	c.Start()
-    // 24時間の間は定期実行される
-    time.Sleep(1440 * time.Minute)
+    // 1週間の間は定期実行される
+    time.Sleep(168 * time.Hour)
 }
 
 func scraping() {
